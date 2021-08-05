@@ -5,6 +5,7 @@ echo head(array('title'=>$pageTitle,'bodyclass' => 'items browse'));
 
 <h1><?php echo $pageTitle;?> <?php echo __('(%s total)', $total_results); ?></h1>
 
+<!-- Creates the submenu for browsing by item type -->
 <nav class="items-nav navigation secondary-nav">
 <?php echo public_nav_items(array (
     array (
@@ -32,13 +33,12 @@ echo head(array('title'=>$pageTitle,'bodyclass' => 'items browse'));
 
 <?php echo pagination_links(); ?>
 
-<?php if ($total_results > 0): ?>
 
-<div id="sort-links">
+<!-- <?php if ($total_results > 0): ?>
+ <div id="sort-links">
     <span class="sort-label"><?php echo __('Sort by: '); ?></span><?php echo browse_sort_links($sortLinks); ?>
 </div>
-
-<?php endif; ?>
+<?php endif; ?> -->
 
 <?php foreach (loop('items') as $item): ?>
 <div class="item record">
