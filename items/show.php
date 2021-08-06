@@ -2,14 +2,20 @@
 $title = metadata('item', 'display_title');
 echo head(array('title' => $title, 'bodyclass' => 'items show'));
 ?>
+<!-- define collection name -->
+<?php $cname = metadata('item', 'Collection Name'); ?>
 
 <h1><?php echo metadata('item', 'rich_title', array('no_escape' => true)); ?></h1>
 
-<?php echo "Line 8"; ?>
+<!-- Display file fullsize before metadata -->
+<?php if (metadata('item', 'has files')): ?>
+    <?php echo files_for_item(array('imageSize' => 'fullsize')); ?>
+<?php endif; ?>
+
+<!-- Lesson plans have different metadata displayed -->
 
 <?php if (metadata('item', 'item_type_name') == 'Lesson Plan'): ?>
-
-<div class="lesson-plan">
+<?php echo "Lesson Plan" ?>
 
 <h2><?php echo metadata('item', array('Dublin Core', 'Title')); ?></h2>
 
@@ -31,28 +37,18 @@ echo head(array('title' => $title, 'bodyclass' => 'items show'));
 <h3>Lesson Plan Text</h3>
 <p><?php echo metadata('item', array('Item Type Metadata', 'Lesson Plan Text')); ?></p>
 
-</div>
-
-
+<!-- metadata display for everything else -->
 <?php else: ?>
+<!-- Check if public contribution -->
+    <?php if ($cname == 'Public Contributions'): ?>
+    <div id="contributed-item">
+                <p>This item was contributed by a user and has not been curated by a project historian.</p>
+     </div>
+     <?php endif ?>
 
 <?php echo all_element_texts('item'); ?>
 
-<!-- The following returns all of the files associated with an item. -->
-<?php if (metadata('item', 'has files')): ?>
-<div id="itemfiles" class="element">
-    <h3><?php echo __('Files'); ?></h3>
-    <div class="element-text"><?php echo files_for_item(); ?></div>
-</div>
-<?php endif; ?>
-<?php endif; ?>
-
-<!-- If the item belongs to a collection, the following creates a link to that collection. -->
-<?php if (metadata('item', 'Collection Name')): ?>
-<div id="collection" class="element">
-    <h3><?php echo __('Collection'); ?></h3>
-    <div class="element-text"><p><?php echo link_to_collection_for_item(); ?></p></div>
-</div>
+<!-- end the IF statement for Lesson plans vs other metadata -->
 <?php endif; ?>
 
 <!-- The following prints a list of all tags associated with the item -->
@@ -68,12 +64,12 @@ echo head(array('title' => $title, 'bodyclass' => 'items show'));
     <h3><?php echo __('Citation'); ?></h3>
     <div class="element-text"><?php echo metadata('item', 'citation', array('no_escape' => true)); ?></div>
 </div>
-
+<!-- Hiding output formats
 <div id="item-output-formats" class="element">
     <h3><?php echo __('Output Formats'); ?></h3>
     <div class="element-text"><?php echo output_format_list(); ?></div>
 </div>
-
+-->
 <?php fire_plugin_hook('public_items_show', array('view' => $this, 'item' => $item)); ?>
 
 <nav>

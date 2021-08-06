@@ -591,9 +591,12 @@ th {
   .items.show .element {
     margin-bottom: 36px; }
   .item img,
-  .item-img,
-  .item-file img {
+  .item-img {
     float: left;
+    margin: 0 9px 9px 0;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    overflow: hidden; }
+  .item-file img {
     margin: 0 9px 9px 0;
     border: 1px solid rgba(0, 0, 0, 0.2);
     overflow: hidden; }
@@ -607,8 +610,14 @@ th {
   .item-img img {
     margin: 0;
     border: 0; }
+
   .title-list {
     clear: both; }
+
+/*Style Contribution */
+    #contributed-item {clear:right;margin:2em 0 1em;padding:10px;margin-top:1em;background:#868D4A;color:#fff;}
+    #contributed-item p {margin-bottom:0;} 
+
   /* Tag Clouds */
   .hTagcloud ul {
     padding: 0;
