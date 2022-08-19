@@ -1,6 +1,11 @@
-# About page text
+# Simple Page: About
 
-Simple page: About
+Title: About
+Slug: about
+
+No parent
+
+## Text
 
 ```
 <p>The Bracero Program, which brought millions of Mexican guest workers to the United States, ended more than four decades ago. Current debates about immigration policy-including discussions about a new guest worker program-have put the program back in the news and made it all the more important to understand this chapter of American history. Yet while top U.S. and Mexican officials re- 
